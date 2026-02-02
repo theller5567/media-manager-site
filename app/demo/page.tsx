@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Play, Calendar, Mail, Send } from "lucide-react";
+import { Send } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
+
 
 export default function DemoPage() {
   const [formData, setFormData] = useState({
@@ -53,17 +54,36 @@ export default function DemoPage() {
         </div>
       </section>
 
-      {/* Demo Video Section */}
-      <section className="pb-20 px-4 bg-slate-900">
+      {/* Demo Video Section - video served from Vercel Blob */}
+      <section className="pb-20 px-4 bg-slate-900" aria-labelledby="demo-video-heading">
         <div className="max-w-4xl mx-auto">
+          <h2 id="demo-video-heading" className="sr-only">
+            Synapse demo video
+          </h2>
           <div className="aspect-video bg-slate-800 rounded-lg border border-slate-700 overflow-hidden mb-8">
-            <div className="w-full h-full flex items-center justify-center text-slate-400">
-              <div className="text-center">
-                <Play className="h-16 w-16 mx-auto mb-4 text-cyan-400" />
-                <p className="text-lg">Demo Video Placeholder</p>
-                <p className="text-sm text-slate-500 mt-2">Add your product demo video here</p>
+            {process.env.NEXT_PUBLIC_DEMO_VIDEO_URL ? (
+              <video
+                className="w-full h-full object-contain"
+                src={process.env.NEXT_PUBLIC_DEMO_VIDEO_URL}
+                controls
+                playsInline
+                preload="metadata"
+                aria-label="Synapse product demo video"
+                title="Synapse demo video"
+              >
+                <p className="p-4 text-slate-400">
+                  Your browser does not support the video tag.{" "}
+                  <a href={process.env.NEXT_PUBLIC_DEMO_VIDEO_URL} className="text-cyan-400 underline" target="_blank" rel="noopener noreferrer">
+                    Download the demo video
+                  </a>
+                  .
+                </p>
+              </video>
+            ) : (
+              <div className="w-full h-full flex items-center justify-center text-slate-400 p-8 text-center">
+                <p>Demo video URL not configured. Set NEXT_PUBLIC_DEMO_VIDEO_URL to your Vercel Blob URL.</p>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </section>

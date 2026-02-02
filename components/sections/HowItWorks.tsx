@@ -39,7 +39,7 @@ export function HowItWorks() {
             return (
               <div key={step.number} className="relative">
                 {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-12 left-full w-full h-0.5 bg-gradient-to-r from-cyan-500 to-transparent -z-10" />
+                  <div className="hidden md:block absolute top-12 left-full w-full h-0.5 bg-linear-to-r from-cyan-500 to-transparent -z-10" />
                 )}
                 <div className="bg-slate-900 p-8 rounded-lg border border-slate-700 h-full">
                   <div className="flex items-center gap-4 mb-4">
